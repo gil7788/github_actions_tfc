@@ -48,7 +48,6 @@ This README provides an overview of the Terraform configuration for automating i
 ## Additional Information
 - **Terraform Configuration**: The provided Terraform configuration manages Google Cloud resources such as compute instances and project services.
 - **Version Control**: The `updates` block in the configuration ensures that the
-<!--
 GitHub Actions and the Terraform CLI are kept up-to-date.
 - **Provider Requirements**: The configuration specifies version requirements for the Google Cloud and Random providers.
 
