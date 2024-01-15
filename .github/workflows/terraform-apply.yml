@@ -1,7 +1,7 @@
 name: "Terraform Apply"
 
 on:
-  push:
+  pull_request:
     branches:
       - prod
 
