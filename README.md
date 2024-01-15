@@ -1,6 +1,4 @@
-# github_actions_tfc
-
-# GitHub Actions Terraform Configuration README
+# GitHub Actions Terraform Cloud Configuration
 
 This README provides an overview of the Terraform configuration for automating infrastructure management using GitHub Actions and Terraform Cloud. It outlines the steps to set up and use the GitHub Actions workflows for Terraform Plan and Terraform Apply.
 
