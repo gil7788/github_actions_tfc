@@ -1,37 +1,31 @@
-terraform {
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = "~> 5.11.0"
-    }
-  
-    random = {
-      source  = "hashicorp/random"
-      version = "3.4.3"
-    }
-  }
-  required_version = "~> 1.2"
-}
-
 provider "google" {
-  region = "us-west1"
+  project = var.project
+  region  = var.region
+  zone    = var.zone
 }
 
-resource "random_pet" "sg" {}
 
-data "google_compute_image" "ubuntu" {
-  family  = "ubuntu-2004-lts"
-  project = "ubuntu-os-cloud"
+resource "google_project_service" "cloud_resource_manager_api" {
+  service = "cloudresourcemanager.googleapis.com"
+  disable_on_destroy = var.disable_apis_on_destroy
 }
 
-resource "google_compute_instance" "web" {
-  name         = "web-instance"
-  machine_type = "f1-micro"
-  zone         = "us-west1-b"
+resource "google_project_service" "compute_api" {
+  depends_on = [google_project_service.cloud_resource_manager_api]
+  service = "compute.googleapis.com"
+  // Optionally, you can disable services on destroy.
+  disable_on_destroy = var.disable_apis_on_destroy
+}
+
+resource "google_compute_instance" "default" {
+  depends_on= [google_project_service.compute_api]
+  name         = var.instance_name
+  machine_type = var.instance_type
+  zone         = var.zone
 
   boot_disk {
     initialize_params {
-      image = data.google_compute_image.ubuntu.self_link
+      image = "ubuntu-os-cloud/ubuntu-2004-lts"
     }
   }
 
@@ -42,28 +36,6 @@ resource "google_compute_instance" "web" {
     }
   }
 
-  metadata_startup_script = <<-EOF
-              #!/bin/bash
-              apt-get update
-              apt-get install -y apache2
-              sed -i -e 's/80/8080/' /etc/apache2/ports.conf
-              echo "Hello World" > /var/www/html/index.html
-              systemctl restart apache2
-              EOF
+  tags = ["terraform-provisioned"]
 }
 
-resource "google_compute_firewall" "web-sg" {
-  name    = "${random_pet.sg.id}-sg"
-  network = "default"
-
-  allow {
-    protocol = "tcp"
-    ports    = ["8080"]
-  }
-
-  source_ranges = ["0.0.0.0/0"]
-}
-
-output "web-address" {
-  value = google_compute_instance.web.network_interface[0].access_config[0].nat_ip
-}
