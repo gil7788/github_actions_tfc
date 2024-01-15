@@ -57,10 +57,6 @@ GitHub Actions and the Terraform CLI are kept up-to-date.
 - **Secure Your Secrets**: Always store sensitive information like API tokens as encrypted secrets in GitHub or Terraform Cloud.
 - **Understand Terraform Workflow**: Familiarize yourself with Terraform's core concepts like state management, workspaces, and plans/applies.
 
-## Troubleshooting
-- **Workflow Failures**: Check the GitHub Actions logs for specific error messages.
-- **Terraform Cloud Issues**: Look at the Terraform Cloud run logs for detailed Terraform execution errors.
-- **Connectivity Problems**: Ensure your GitHub repository can connect to Terraform Cloud and that your API tokens are valid.
 
 ## Additional Resources
 - [Terraform Cloud Documentation](https://www.terraform.io/cloud-docs)
