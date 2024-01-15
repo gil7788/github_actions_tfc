@@ -27,6 +27,71 @@ This README provides an overview of the Terraform configuration for automating i
    - Adjust `CONFIG_DIRECTORY` if your Terraform configurations are in a different directory.
 
 ## Workflow
+ ### GitHub Flow
+ In our project, we use a structured branching strategy involving `prod`, `master`, and feature branches. The `master` branch serves as the primary development branch where all the feature development takes place. Contributors create feature branches off of `master` for each new feature or bug fix. After completing the development, the changes are merged back into `master` through pull requests.
+
+For releases, we use the `prod` branch, which represents the production-ready state of our application. When it's time to deploy, the latest stable version of code from `master` is merged into `prod`
+
+
+ #### Updating the Master Branch:
+
+ Here’s how to update the master branch using this workflow:
+
+ 1. **Create a Feature Branch:**
+    - From  `master` branch, create a new branch. This is where you'll work on your changes.
+    ```bash
+    git checkout master
+    git pull origin master
+    git checkout -b your-feature-branch
+    ```
+
+ 2. **Develop Your Feature:**
+    - Make your changes in this feature branch. Commit these changes to the branch.
+    ```bash
+    git add .
+    git commit -m "Your commit message"
+    ```
+
+ 3. **Create a Pull Request (PR):**
+    - Push your branch to the remote repository and open a pull request to the `master` branch.
+    ```bash
+    git push origin your-feature-branch
+    ```
+    - On GitHub, create a new PR from `your-feature-branch` to `master` 
+
+ 4. **Merge the PR:**
+    - After Pull Request review
+    - Choose either **"Squash and merge"** or **"Rebase and merge"**.
+
+ #### Updating the Production (Prod) Branch: 
+
+ For deploying to production, the workflow involves merging changes from the `master` branch into a `prod` branch. 
+
+ 1. **Create a Pull Request to Prod Branch:** 
+    - From the `master` branch, create a new pull request to the `prod` branch. 
+    ```bash 
+    git checkout master 
+    git pull origin master 
+    git push origin master  # Ensure the remote master is up to date 
+    ``` 
+    - On GitHub, create a new PR from `master` to `prod` 
+
+ 2. **Merge with a Merge Commit:** 
+    - Select "Create a merge commit" while merging the pull request on GitHub.
+
+ 3. **Update Local Prod and Master Branches:** 
+    - After merging, make sure to update both your local `prod` and `master` branches. This ensures that both branches reflect the current state of the repository after the merge. 
+    ```bash 
+    # Update local prod branch 
+    git checkout prod 
+    git pull origin prod 
+
+    # Update local master branch 
+    git checkout master 
+    git merge origin prod 
+    git push origin master 
+    ``` 
+
 
 ### Terraform Plan Workflow
 - **Trigger**: The workflow is triggered on pull requests to the `master` and `prod` branches.
