@@ -1,4 +1,4 @@
-project          = "github_actions_tfc"
+project          = "github-actions-tfc"
 
 # Permissions
 disable_apis_on_destroy = false
