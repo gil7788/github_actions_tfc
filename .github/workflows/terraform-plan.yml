@@ -2,6 +2,9 @@ name: "Terraform Plan"
 
 on:
   pull_request:
+    branches:
+      - master
+      - prod
 
 env:
   # TODO change this to your organization
