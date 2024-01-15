@@ -112,23 +112,8 @@ For releases, we use the `prod` branch, which represents the production-ready st
 
 ## Additional Information
 - **Terraform Configuration**: The provided Terraform configuration manages Google Cloud resources such as compute instances and project services.
-- **Version Control**: The `updates` block in the configuration ensures that the
-GitHub Actions and the Terraform CLI are kept up-to-date.
-- **Provider Requirements**: The configuration specifies version requirements for the Google Cloud and Random providers.
-
-### Tips and Best Practices
-- **Review Pull Requests Carefully**: Changes in infrastructure as code should be reviewed with the same rigor as application code.
-- **Regularly Update Dependencies**: Keep your Terraform providers and modules updated to benefit from the latest features and fixes.
-- **Secure Your Secrets**: Always store sensitive information like API tokens as encrypted secrets in GitHub or Terraform Cloud.
-- **Understand Terraform Workflow**: Familiarize yourself with Terraform's core concepts like state management, workspaces, and plans/applies.
-
 
 ## Additional Resources
 - [Terraform Cloud Documentation](https://www.terraform.io/cloud-docs)
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
 - [Automate Terraform with GitHub Actions Tutorial](https://developer.hashicorp.com/terraform/tutorials/automation/github-actions)
-
-This README provides a starting point for using GitHub Actions with Terraform Cloud. Adapt and expand upon it as needed for your specific infrastructure management requirements.
-
-
-This repo is a companion repo to the [Automate Terraform with GitHub Actions tutorial](https://developer.hashicorp.com/terraform/tutorials/automation/github-actions).
