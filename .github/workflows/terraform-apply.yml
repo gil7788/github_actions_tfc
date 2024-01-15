@@ -12,7 +12,7 @@ env:
   # TODO change this to your workspace
   TF_WORKSPACE: "github_actions_tfc"
   # TODO change this to the directory where your Terraform configuration lives
-  CONFIG_DIRECTORY: "./terraform"
+  CONFIG_DIRECTORY: "terraform"
 
 jobs:
   terraform:
